@@ -17,12 +17,19 @@ function convertRomanToArabic() {
       "I": 1
     };
 
-    for (var key in romanNumerals) {
-      while (romanNumeral.indexOf(key) === 0) {
-        arabicNumeral += romanNumerals[key];
-        romanNumeral = romanNumeral.replace(key, "");
+    for (var i = 0; i < romanNumeral.length; i++) {
+      var currentSymbol = romanNumeral[i];
+      var currentValue = romanNumerals[currentSymbol];
+      var nextSymbol = romanNumeral[i + 1];
+      var nextValue = romanNumerals[nextSymbol];
+
+      if (nextValue && currentValue < nextValue) {
+        arabicNumeral += nextValue - currentValue;
+        i++;
+      } else {
+        arabicNumeral += currentValue;
       }
     }
 
     document.getElementById("arabicOutput").innerHTML = arabicNumeral;
-  }
+}
