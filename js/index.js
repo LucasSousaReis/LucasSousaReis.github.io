@@ -167,6 +167,7 @@ function resetGame() {
 }
 
 // Initialize the game on page load
+function init(){
 document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("start-button");
   const stopButton = document.getElementById("stop-button");
@@ -174,4 +175,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startButton.addEventListener("click", startGame);
   stopButton.addEventListener("click", stopGame);
+}
 }
