@@ -22,6 +22,8 @@ body {font-family: "Lato", sans-serif}
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
     <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BAND</a>
+    <a href="#conway" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BAND</a>
+
     <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TOUR</a>
     <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
     <div class="w3-dropdown-hover w3-hide-small">
@@ -78,6 +80,50 @@ body {font-family: "Lato", sans-serif}
   <label for="romanInput">Enter a Roman Numeral:</label>
   <input type="text" id="romanInput" placeholder="Enter a Roman Numeral">
   <button onclick="convertRomanToArabic()">Convert</button>
+  <br>
+  <p>Arabic Numeral: <span id="arabicOutput"></span></p>
+    <p class="w3-justify">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-third">
+        <p>Name</p>
+        <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+      </div>
+      <div class="w3-third">
+        <p>Name</p>
+        <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+      </div>
+      <div class="w3-third">
+        <p>Name</p>
+        <img src="/w3images/bandmember.jpg" class="w3-round" alt="Random Name" style="width:60%">
+      </div>
+    </div>
+  </div>
+  <!-- Conway -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="conway">
+    <h2 class="w3-wide">Conway</h2>
+    <p class="w3-opacity"><i>We love music</i></p>
+    <title>Conway's Game of Life</title>
+    <style>
+      #grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 20px);
+      }
+
+      .cell {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+      }
+    </style>
+    <div id="grid"></div>
+
+    <button onclick="startGame()">Start</button>
+    <button onclick="stopGame()">Stop</button>
+    <button onclick="resetGame()">Reset</button>
+
+    <script src="game.js"></script>
   <br>
   <p>Arabic Numeral: <span id="arabicOutput"></span></p>
     <p class="w3-justify">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip

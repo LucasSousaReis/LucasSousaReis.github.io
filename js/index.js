@@ -67,3 +67,111 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+
+// Size of the grid
+const gridSize = 20;
+const totalCells = gridSize * gridSize;
+
+// Create a 2D array to represent the grid
+let grid = new Array(gridSize);
+for (let i = 0; i < gridSize; i++) {
+  grid[i] = new Array(gridSize);
+}
+
+// Generate the initial grid state randomly
+function generateRandomGrid() {
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      grid[i][j] = Math.random() < 0.5 ? 0 : 1;
+    }
+  }
+}
+
+// Update the grid for the next generation
+function updateGrid() {
+  let newGrid = new Array(gridSize);
+  for (let i = 0; i < gridSize; i++) {
+    newGrid[i] = new Array(gridSize);
+  }
+
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      const cellState = grid[i][j];
+      const liveNeighbors = countLiveNeighbors(i, j);
+
+      if (cellState === 1 && (liveNeighbors < 2 || liveNeighbors > 3)) {
+        newGrid[i][j] = 0; // Cell dies
+      } else if (cellState === 0 && liveNeighbors === 3) {
+        newGrid[i][j] = 1; // Cell comes alive
+      } else {
+        newGrid[i][j] = cellState; // Cell remains the same
+      }
+    }
+  }
+
+  grid = newGrid;
+}
+
+// Count the number of live neighbors around a cell
+function countLiveNeighbors(row, col) {
+  let count = 0;
+  for (let i = -1; i <= 1; i++) {
+    for (let j = -1; j <= 1; j++) {
+      if (i === 0 && j === 0) continue; // Skip the current cell
+
+      const newRow = (row + i + gridSize) % gridSize;
+      const newCol = (col + j + gridSize) % gridSize;
+      count += grid[newRow][newCol];
+    }
+  }
+  return count;
+}
+
+// Render the grid on the HTML page
+function renderGrid() {
+  const gridElement = document.getElementById("grid");
+  gridElement.innerHTML = "";
+
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.style.backgroundColor = grid[i][j] === 1 ? "#000" : "#fff";
+      gridElement.appendChild(cell);
+    }
+  }
+}
+
+// Start the game
+let interval;
+function startGame() {
+  generateRandomGrid();
+  renderGrid();
+  interval = setInterval(() => {
+    updateGrid();
+    renderGrid();
+  }, 200);
+}
+
+// Stop the game
+function stopGame() {
+  clearInterval(interval);
+}
+
+// Reset the game
+function resetGame() {
+  stopGame();
+  generateRandomGrid();
+  renderGrid();
+}
+
+// Initialize the game on page load
+document.addEventListener("DOMContentLoaded", () => {
+  const startButton = document.getElementById("start-button");
+  const stopButton = document.getElementById("stop-button");
+  const resetButton = document.getElementById("reset-button");
+
+  startButton.addEventListener("click", startGame);
+  stopButton.addEventListener("click", stopGame);
+}
